@@ -2,7 +2,13 @@ package cn.nuaa.ai.testPlugins;
 
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.BadPositionCategoryException;
+import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.IDocumentListener;
+import org.eclipse.jface.text.ITextOperationTarget;
+import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
@@ -23,6 +29,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.help.IWorkbenchHelpSystem;
 import org.eclipse.ui.part.ViewPart;
+import org.eclipse.ui.texteditor.ITextEditor;
 
 public class View1 extends ViewPart {
 	private List list; // 将列表写成类的实例变量，以扩大它的可访问范围
@@ -82,14 +89,73 @@ public class View1 extends ViewPart {
 				 */
 				IEditorReference[] editorReferences = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 						.getActivePage().getEditorReferences();
-				System.err.println("!!!!!!!!!!!!!!!!!!!!    " + editorReferences.length);
+				System.err.println("!!!!!!!!!!!!!!!!!!!! editorReferences length " + editorReferences.length);
 				if (editorReferences[0].isDirty()) {
 					System.err.println("!!!!!!!!!!!!!!!!!!!!    " + editorReferences[0].getName() + " is dirty");
 				}
 				IEditorPart part = editorReferences[0].getEditor(false);
-				System.err.println(part.getEditorInput());
-				System.err.println(editorReferences[0].getEditor(false).getEditorInput().getImageDescriptor());
-				System.err.println(editorReferences[0].getEditor(false).getEditorInput().getToolTipText());
+				System.err.println("part.getEditorInput() " + part.getEditorInput());
+				System.err.println("editorReferences[0].getEditor(false).getEditorInput().getImageDescriptor() " + editorReferences[0].getEditor(false).getEditorInput().getImageDescriptor());
+				System.err.println("editorReferences[0].getEditor(false).getEditorInput().getToolTipText() " + editorReferences[0].getEditor(false).getEditorInput().getToolTipText());
+				
+				
+				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				IDocument doc = ((ITextEditor)part).getDocumentProvider().getDocument(part.getEditorInput());
+				/*
+				try {
+					System.out.println("doc.getPositions(String) " + doc.getPositions("main"));
+				} catch (BadPositionCategoryException e1) {
+					e1.printStackTrace();
+				}
+				*/
+				/*
+				try {
+					System.out.println("doc.getLineOffset(int) " + doc.getLineOffset(1));
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					System.out.println("doc.getLineOfOffset(0) " + doc.getLineOfOffset(0));
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					System.out.println("doc.getLineDelimiter(0) " + doc.getLineDelimiter(0));
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}*/
+				/*
+				System.out.println("doc.get:");
+				System.out.println(doc.get());
+				doc.addDocumentListener(new IDocumentListener() {
+					
+					@Override
+					public void documentChanged(DocumentEvent arg0) {
+						System.out.println("typing char: " + arg0.getText());
+					}
+					
+					@Override
+					public void documentAboutToBeChanged(DocumentEvent arg0) {
+						
+					}
+				});
+				*/
+				
+				IEditorPart editorPart = getSite().getPage().getActiveEditor();
+				if (editorPart != null) {
+				    ITextOperationTarget target = (ITextOperationTarget)editorPart.getAdapter(ITextOperationTarget.class);
+				    if (target instanceof ITextViewer) {
+				        ITextViewer textViewer = (ITextViewer)target;
+				        System.out.println("textViewer.getSelectedRange().x " + textViewer.getSelectedRange().x);
+				        System.out.println("textViewer.getSelectedRange().y " + textViewer.getSelectedRange().y);
+				        System.out.println("textViewer.getTopIndex() " + textViewer.getTopIndex());
+				        System.out.println("textViewer.getTopIndexStartOffset() " + textViewer.getTopIndexStartOffset());
+				        System.out.println("textViewer.getSelectionProvider().getSelection() " + textViewer.getSelectionProvider().getSelection());
+				        IDocument doc2 = textViewer.getDocument();
+				        String code = doc2.get();
+				        System.out.println("!!!!!!!!!!!!!!!!!!!!! code num " + getCurrentLineNum(code,textViewer.getSelectedRange().x));
+				    } 
+				}
 			}
 		});
 
@@ -120,6 +186,24 @@ public class View1 extends ViewPart {
 		actionGroup.fillContextMenu(manger);
 	}
 
+	/**
+	 * 返回当前光标所在行数;
+	 * 编号从0开始;
+	 * */
+	private static int getCurrentLineNum(String code,int offset){
+		if(code.length() < offset){
+			return -1;
+		}
+		int line = 0;
+		for(int i = 0;i < offset;i++){
+			if(code.charAt(i) == '\n'){
+				line ++;
+			}
+		}
+		return line;
+	}
+	
+	
 	@Override
 	public void setFocus() {
 	}
