@@ -12,7 +12,7 @@ public class View2 extends ViewPart {
 	public void createPartControl(Composite parent) {
 		Composite topComp = new Composite(parent, SWT.NONE);
 		topComp.setLayout(new FillLayout());
-		text = new Text(topComp, SWT.BORDER);
+		text = new Text(topComp,  SWT.MULTI);
 		text.setText("Œ“ «TextøÚ");
 	}
 
