@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+
    <extension point="org.eclipse.ui.perspectives">
         <perspective
             name="myplugin 透视图"
@@ -9,6 +10,7 @@
             id="cn.nuaa.ai.testPlugins.SamplePerspective">
         </perspective>
    </extension>
+   
    
 	<extension point="org.eclipse.ui.views">
 	     <view
@@ -26,6 +28,7 @@
 	             id="cn.nuaa.ai.testPlugins.View2">
 	     </view>
 	</extension>
+	
 	
 	<extension point="org.eclipse.ui.editors">
 	  <editor 
@@ -47,4 +50,79 @@
 	        id="cn.nuaa.ai.testPlugins.FranceEditor">
 	   </editor>
 	</extension>
+	
+	
+    <extension
+	 	point="org.eclipse.ui.commands">
+	     
+		<command
+			name="Reference Command"
+			id="cn.nuaa.ai.myCommand">
+		</command>
+	 
+		<command 
+			name="Sub1 Command" 
+			id="cn.nuaa.ai.mysub1Command">
+		</command>
+	 
+		<command
+			name="Sub2 Command"
+			id="cn.nuaa.ai.mysub2Command">
+		</command>
+	</extension>
+	
+	
+	<extension
+         point="org.eclipse.ui.menus">
+      
+		<menuContribution
+			locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+			<toolbar
+			   id="cn.nuaa.ai.toolbars">
+				<command
+				      commandId="cn.nuaa.ai.myCommand"
+				      icon="icons/sample.gif"
+				      tooltip="Pull down" style="pulldown">
+				</command>
+			</toolbar>
+		</menuContribution>
+      
+		<menuContribution
+			locationURI="menu:cn.nuaa.ai.myCommand">
+			<command
+			          commandId="cn.nuaa.ai.mysub1Command"
+			          icon="icons/sample.gif"
+			          label = "Sub 1"
+			          tooltip="Sub 1">
+			</command>
+			<command
+				commandId="cn.nuaa.ai.mysub2Command"
+				icon="icons/sample.gif"
+				tooltip="Sub2"
+				label = "Sub 2">
+			</command>
+		</menuContribution>
+		
+	</extension>
+	
+	
+	<extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="cn.nuaa.ai.myCommand"
+            class="cn.nuaa.ai.handler.MyCommandHandler">
+      </handler>
+      
+      <handler
+            commandId="cn.nuaa.ai.mysub1Command"
+            class="cn.nuaa.ai.handler.Mysub1CommandHandler">
+      </handler>
+      
+      <handler
+            commandId="cn.nuaa.ai.mysub2Command"
+            class="cn.nuaa.ai.handler.Mysub2CommandHandler">
+      </handler>
+   </extension>
+	
+	
 </plugin>
