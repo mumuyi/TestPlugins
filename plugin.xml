@@ -4,7 +4,7 @@
 
    <extension point="org.eclipse.ui.perspectives">
         <perspective
-            name="myplugin 透视图"
+            name="myplugin perspectives"
             icon="icons/sample.gif"
             class="cn.nuaa.ai.testPlugins.SamplePerspective"
             id="cn.nuaa.ai.testPlugins.SamplePerspective">
@@ -14,14 +14,14 @@
    
 	<extension point="org.eclipse.ui.views">
 	     <view
-	             name="视图1"
+	             name="search recommendation result"
 	             icon="icons/sample.gif"
 	             category="cn.nuaa.ai.view"
 	             class="cn.nuaa.ai.testPlugins.View1"
 	             id="cn.nuaa.ai.testPlugins.View1">
 	     </view>
 	     <view
-	             name="视图2"
+	             name="context recommendation result"
 	             icon="icons/sample.gif"
 	             category="cn.nuaa.ai.view"
 	             class="cn.nuaa.ai.testPlugins.View2"
@@ -128,15 +128,15 @@
 
    <extension point="org.eclipse.ui.preferencePages">
       <page
-          name="代码推荐设置"
+          name="my code recommendation settings"
           class="cn.nuaa.ai.testPlugins.RootPreferencePage"
           id="cn.nuaa.ai.RootPreferencePage">
       </page>
       <page
-          name="上下文推荐设置"
+          name="context recommendation settings"
           category="cn.nuaa.ai.RootPreferencePage"
-          class="cn.nuaa.ai.testPlugins.DBPreferencePage"
-          id="cn.nuaa.ai.DBPreferencePage">
+          class="cn.nuaa.ai.testPlugins.ContextPreferencePage"
+          id="cn.nuaa.ai.ContextPreferencePage">
       </page>      
    </extension>
 </plugin>

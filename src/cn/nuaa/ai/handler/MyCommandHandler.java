@@ -49,9 +49,12 @@ public class MyCommandHandler extends AbstractHandler {
 				String results = search(code);
 				
 				//ÏÔÊ¾½á¹û;
-				IViewPart view2 = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView("cn.nuaa.ai.testPlugins.View2");
-				Text text = ((View2) view2).getText();
-				text.setText(results);
+				IViewPart viewpart2 = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView("cn.nuaa.ai.testPlugins.View2");
+				View2 view2 = (View2) viewpart2;
+				for(int i = 0;i < view2.getText().size();i++){
+					Text text = view2.getText().get(i);
+					text.setText(results);	
+				}
 			}
 		}
 	}

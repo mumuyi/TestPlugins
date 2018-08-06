@@ -54,7 +54,7 @@ public class ViewExample extends ViewPart {
 				IViewPart view2 = wbp.findView("cn.nuaa.ai.testPlugins.View2");
 				// 这个地方的参数是"视图2"在plugin.xml中的id标识.由此可见plugin.xml文件在插件中的地位是极其重要的.
 				// 将当前选择的列表项显示在文本框中
-				Text text = ((View2) view2).getText();
+				Text text = ((View2) view2).getText().get(0);
 				text.setText(list.getSelection()[0]);
 			}
 		});

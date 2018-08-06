@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-public class DBPreferencePage extends PreferencePage implements IWorkbenchPreferencePage, ModifyListener {
+public class ContextPreferencePage extends PreferencePage implements IWorkbenchPreferencePage, ModifyListener {
 	// 为文本框定义三个键值
 	public static final String Automatic_KEY = "$Automatic_KEY";
 	public static final String ResultNum_KEY = "$ResultNum_KEY";
@@ -24,7 +24,7 @@ public class DBPreferencePage extends PreferencePage implements IWorkbenchPrefer
 	public static final String MinSimilarity_KEY = "$MinSimilarity_KEY";
 	// 为文本框值定义三个默认值
 	public static final Boolean Automatic_DEFAULT = true;
-	public static final String ResultNum_DEFAULT = "5";
+	public static final String ResultNum_DEFAULT = "3";
 	public static final String ContextLength_DEFAULT = "10";
 	public static final String MinSimilarity_DEFAULT = "0.85";
 	// 定义三个文本框
@@ -49,20 +49,20 @@ public class DBPreferencePage extends PreferencePage implements IWorkbenchPrefer
 		topComp.setLayout(layoutComposite);
 
 		// 创建三个文本框及其标签
-		new Label(topComp, SWT.NONE).setText("是否启动自动推荐:");
+		new Label(topComp, SWT.NONE).setText("Active automatic recommendation:");
 		automaticCheck = new Button(topComp, SWT.CHECK);
-		automaticCheck.setText("启动");
+		automaticCheck.setText("Active");
 		automaticCheck.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-		new Label(topComp, SWT.NONE).setText("显示结果数量:");
+		new Label(topComp, SWT.NONE).setText("The number of display results:");
 		resultNumText = new Text(topComp, SWT.BORDER);
 		resultNumText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-		new Label(topComp, SWT.NONE).setText("上下文长度:");
+		new Label(topComp, SWT.NONE).setText("Context length:");
 		contextLengthText = new Text(topComp, SWT.BORDER);
 		contextLengthText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-		new Label(topComp, SWT.NONE).setText("最低相似度设置:");
+		new Label(topComp, SWT.NONE).setText("Minimum similarity setting:");
 		minSimilarityText = new Text(topComp, SWT.BORDER);
 		minSimilarityText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		
