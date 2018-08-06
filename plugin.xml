@@ -124,5 +124,19 @@
       </handler>
    </extension>
 	
-	
+
+
+   <extension point="org.eclipse.ui.preferencePages">
+      <page
+          name="代码推荐设置"
+          class="cn.nuaa.ai.testPlugins.RootPreferencePage"
+          id="cn.nuaa.ai.RootPreferencePage">
+      </page>
+      <page
+          name="上下文推荐设置"
+          category="cn.nuaa.ai.RootPreferencePage"
+          class="cn.nuaa.ai.testPlugins.DBPreferencePage"
+          id="cn.nuaa.ai.DBPreferencePage">
+      </page>      
+   </extension>
 </plugin>
