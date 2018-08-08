@@ -31,24 +31,7 @@
 	
 	
 	<extension point="org.eclipse.ui.editors">
-	  <editor 
-	        name="中国Editor"
-	        icon="icons/sample.gif"
-	        class="cn.nuaa.ai.testPlugins.ChinaEditor"
-	        id="cn.nuaa.ai.testPlugins.ChinaEditor">
-	  </editor>
-	  <editor 
-	        name="美国Editor"
-	        icon="icons/sample.gif"
-	        class="cn.nuaa.ai.testPlugins.UsaEditor"
-	        id="cn.nuaa.ai.testPlugins.UsaEditor">
-	  </editor>
-	  <editor 
-	        name="法国Editor"
-	        icon="icons/sample.gif"
-	        class="cn.nuaa.ai.testPlugins.FranceEditor"
-	        id="cn.nuaa.ai.testPlugins.FranceEditor">
-	   </editor>
+
 	</extension>
 	
 	
@@ -138,5 +121,16 @@
           class="cn.nuaa.ai.testPlugins.ContextPreferencePage"
           id="cn.nuaa.ai.ContextPreferencePage">
       </page>      
+   </extension>
+   
+
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="cn.nuaa.ai.myCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="Ctrl+Alt+A"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
    </extension>
 </plugin>

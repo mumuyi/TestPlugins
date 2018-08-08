@@ -60,9 +60,9 @@ public class ViewExample extends ViewPart {
 		});
 
 		list.addMouseListener(new MouseAdapter() {
-			private ChinaEditorInput chinaEditorInput = new ChinaEditorInput();
-			private UsaEditorInput usaEditorInput = new UsaEditorInput();
-			private FranceEditorInput franceEditorInput = new FranceEditorInput();
+			//private ChinaEditorInput chinaEditorInput = new ChinaEditorInput();
+			//private UsaEditorInput usaEditorInput = new UsaEditorInput();
+			//private FranceEditorInput franceEditorInput = new FranceEditorInput();
 
 			public void mouseDoubleClick(MouseEvent e) {
 				/*

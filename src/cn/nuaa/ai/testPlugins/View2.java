@@ -48,7 +48,7 @@ public class View2 extends ViewPart {
 		
 		//添加页面元素;
 		for(int i = 0;i < resultNum;i++){
-			Text text = new Text(topComp,  SWT.MULTI);
+			Text text = new Text(topComp,  SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
 			text.setText("我是Text框" + i);
 			text.setLayoutData(gridData);
 			textList.add(text);

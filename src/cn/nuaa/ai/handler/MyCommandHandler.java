@@ -30,7 +30,8 @@ public class MyCommandHandler extends AbstractHandler {
 		if (editorReferences[0].isDirty()) {
 			System.err.println("!!!!!!!!!!!!!!!!!!!!    " + editorReferences[0].getName() + " is dirty");
 		}
-		IEditorPart part = editorReferences[0].getEditor(false);
+		//IEditorPart part = editorReferences[0].getEditor(false);
+		IEditorPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if (part != null) {
 			ITextOperationTarget target = (ITextOperationTarget) part.getAdapter(ITextOperationTarget.class);
 			if (target instanceof ITextViewer) {
@@ -40,6 +41,10 @@ public class MyCommandHandler extends AbstractHandler {
 				System.out.println("textViewer.getSelectedRange().y " + textViewer.getSelectedRange().y);
 				IDocument doc2 = textViewer.getDocument();
 				String code = doc2.get();
+				
+				//这个里面有很多有用的信息,现在虽然没用到,后续有需要可以看一下;
+				textViewer.getTextWidget();
+				
 				System.out.println(
 						"!!!!!!!!!!!!!!!!!!!!! code num " + getCurrentLineNum(code, textViewer.getSelectedRange().x));
 				System.out.println("doc.get:");
