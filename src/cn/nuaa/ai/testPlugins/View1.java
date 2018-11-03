@@ -146,4 +146,10 @@ public class View1 extends ViewPart {
 	@Override
 	public void setFocus() {
 	}
+
+	@Override
+	public Object getAdapter(Class arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

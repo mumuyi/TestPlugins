@@ -156,6 +156,9 @@ public class ViewExample extends ViewPart {
 				        System.out.println("!!!!!!!!!!!!!!!!!!!!! code num " + getCurrentLineNum(code,textViewer.getSelectedRange().x));
 				    } 
 				}
+				
+				
+				
 			}
 		});
 
@@ -206,5 +209,11 @@ public class ViewExample extends ViewPart {
 	
 	@Override
 	public void setFocus() {
+	}
+
+	@Override
+	public Object getAdapter(Class arg0) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
